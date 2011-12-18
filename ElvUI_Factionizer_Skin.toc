@@ -1,0 +1,10 @@
+## Interface: 40300
+## Title: |cff1784d1ElvUI|r Factionizer Skin
+## Notes: Editless Factionizer Skin For ElvUI/Tukui
+## Author: Camealion
+## Version: 1.4
+## Dependencies: Factionizer
+## OptionalDeps: Tukui, ElvUI
+
+ElvUI_Factionizer_Skin.lua
+!Functions.lua
