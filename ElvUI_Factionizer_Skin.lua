@@ -2,6 +2,10 @@
 	for i = 1, 15 do
 		cDesaturate(_G["ReputationBar"..i.."ExpandOrCollapseButton"])
 	end
+
+	for i = 1, 13 do
+		cDesaturate(_G["FIZ_UpdateEntry"..i])
+	end
 end
 
 local SkinFactionizer = CreateFrame("Frame")
