@@ -1,10 +1,9 @@
 ﻿local function desat(self, event, ...)
-	for i = 1, 11 do 
+	for i = 1, 15 do
 		cDesaturate(_G["ReputationBar"..i.."ExpandOrCollapseButton"])
 	end
 end
 
---Factionizer by Urbin - Added by Camealion - Start
 local SkinFactionizer = CreateFrame("Frame")
 	SkinFactionizer:RegisterEvent("PLAYER_ENTERING_WORLD")
 	SkinFactionizer:SetScript("OnEvent", function(self, event, addon)
@@ -20,7 +19,7 @@ local SkinFactionizer = CreateFrame("Frame")
                 "FIZ_OptionsFrame",
                 "FIZ_ReputationDetailFrame",
 				}	
-	
+
 	local buttons = {
                 "FIZ_OptionsButton",
                 "FIZ_ShowAllButton",
@@ -31,7 +30,7 @@ local SkinFactionizer = CreateFrame("Frame")
 				"FIZ_SupressNoneGlobalButton",
 				"FIZ_ClearSessionGainButton",
 				}
-	
+
 	local checkboxes = {
                 "FIZ_OrderByStandingCheckBox",
                 "FIZ_ShowQuestButton",
@@ -51,9 +50,8 @@ local SkinFactionizer = CreateFrame("Frame")
 				"FIZ_ExtendDetailsBox",
 				"FIZ_GainToChatBox",
 				"FIZ_NoGuildGainBox",
-				"FIZ_ReputationDetailAtWarCheckBox",	--Doesn't work right!															
 				}
-							
+
 				for _, object in pairs(StripAllTextures) do
 							_G[object]:StripTextures()
 				end	
@@ -61,28 +59,45 @@ local SkinFactionizer = CreateFrame("Frame")
 				for _, object in pairs(SetTemplateT) do
 							_G[object]:SetTemplate("Transparent")
 				end			
-	
+
 	-- Skin Buttons
 				for _, button in pairs(buttons) do
 								cSkinButton(_G[button])
 				end		
-				
+
 				for _, checkbox in pairs(checkboxes) do
 								cSkinCheckBox(_G[checkbox])
 				end	
-				
+
+	-- Skin AtWar Checkbox
+		FIZ_ReputationDetailAtWarCheckBox:SetScript("OnUpdate", function(frame)
+			frame:StripTextures()
+			frame:CreateBackdrop("Default")
+			frame.backdrop:Point("TOPLEFT", 4, -4)
+			frame.backdrop:Point("BOTTOMRIGHT", -4, 4)
+
+			if frame.SetCheckedTexture then
+				frame:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-SwordCheck")
+			end
+
+			if frame.SetDisabledCheckedTexture then
+				frame:SetDisabledCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
+			end
+
+		end)
+
 				FIZ_OptionsFrame:CreateShadow("Default")
 
 	-- Skin Close Buttons
 				cSkinCloseButton(FIZ_OptionsFrameClose)
 				cSkinCloseButton(FIZ_ReputationDetailCloseButton)
-				
+
 	-- Skin Scrollbar	
 			cSkinScrollBar(FIZ_UpdateListScrollFrameScrollBar, 5)
-			
+
 			repFrame = _G["ReputationFrame"]
 			repFrame:SetScript("OnUpdate", desat)
-			
+
 	-- Set positions/sizes
 				FIZ_OptionsFrameClose:Point("TOPRIGHT", FIZ_OptionsFrame, "TOPRIGHT", 4, 5)
                 FIZ_OptionsFrame:SetWidth(360)
@@ -91,5 +106,4 @@ local SkinFactionizer = CreateFrame("Frame")
 				FIZ_SupressNoneGlobalButton:Point("TOPLEFT",  FIZ_SupressNoneFactionButton, "BOTTOMLEFT", 0, -5)
 				FIZ_ReputationDetailFrame:Point("TOPLEFT",   ReputationFrame, "TOPRIGHT", 5, 0)
 				FIZ_OptionsFrame:Point("TOPLEFT",   ReputationFrame, "TOPRIGHT", 5, 0)
---Factionizer by Urbin - Added by Camealion - End
 end)
