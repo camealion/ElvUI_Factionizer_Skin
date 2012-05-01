@@ -2,7 +2,7 @@
 ## Title: |cff1784d1ElvUI|r Factionizer Skin
 ## Notes: Editless Factionizer Skin For ElvUI/Tukui
 ## Author: Camealion
-## Version: 1.4
+## Version: 1.5
 ## Dependencies: Factionizer
 ## OptionalDeps: Tukui, ElvUI
 
